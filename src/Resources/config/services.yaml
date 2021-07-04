@@ -1,0 +1,24 @@
+services:
+  # Register checks
+  Browncat\HealthCheckBundle\Check\DoctrineConnectionHealthCheck:
+    autoconfigure: true
+    arguments: ["@?doctrine"]
+
+  # Register checkers
+  Browncat\HealthCheckBundle\Service\GlobalHealthChecker:
+    autoconfigure: true
+      
+  Browncat\HealthCheckBundle\Service\LivenessChecker:
+    autoconfigure: true
+
+  Browncat\HealthCheckBundle\Service\ReadinessChecker:
+    autoconfigure: true
+
+  Browncat\HealthCheckBundle\Service\StartupChecker:
+    autoconfigure: true
+
+  # Configure controller
+  Browncat\HealthCheckBundle\Controller\HealthCheckController:
+      autoconfigure: true
+      arguments: ['@logger']
+      tags: ['controller.service_arguments']

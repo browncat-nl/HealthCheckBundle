@@ -1,0 +1,30 @@
+name: "Coding standard"
+
+on: ["push", "pull_request"]
+
+jobs:
+  phpcs:
+    name: "PHPCS"
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "8.0"
+
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v2"
+      
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          tools: "cs2pr"
+
+      - name: "Install dependencies with Composer"
+        uses: "ramsey/composer-install@v1"
+
+      - name: "Run PHPCS"
+        run: "vendor/bin/phpcs -q --report=checkstyle src/ | cs2pr"
+

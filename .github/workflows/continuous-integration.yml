@@ -1,0 +1,35 @@
+name: "Coding standard"
+
+on: ["push", "pull_request"]
+
+jobs:
+  phpcs:
+    name: "PHPUnit"
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
+          - "8.0"
+
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v2"
+      
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+
+      - name: "Install dependencies with Composer"
+        uses: "ramsey/composer-install@v1"
+        with:
+          dependency-versions: "highest"        
+
+      - name: "Run PHPUnit"
+        run: "vendor/bin/phpunit"
+
