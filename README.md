@@ -130,7 +130,7 @@ final class ExampleCheck extends HealthCheck
 ```
 
 ### (Optional) set checkers
-By default *all* checkers (readiness, liveness and maybe some other configured ones) run the check you've written. If you want to narrow the check down to only run with a specific checker populate `public static array $checkers` with the class references of the desired checker.
+By default *all* checkers (readiness, liveness and maybe some other configured ones) run the check you've written. If you want to narrow the check down to only run with a specific checker populate `public static $checkers` with the class references of the desired checker.
 
 ```php
 // src/Check/ExampleCheck.php
