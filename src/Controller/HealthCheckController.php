@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Browncat\HealthCheckBundle\Controller;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
-use Browncat\HealthCheckBundle\Service\HealthChecker;
+use Browncat\HealthCheckBundle\Service\GlobalHealthChecker;
 use Browncat\HealthCheckBundle\Service\LivenessChecker;
 use Browncat\HealthCheckBundle\Service\ReadinessChecker;
 use Browncat\HealthCheckBundle\Service\StartupChecker;
@@ -76,7 +76,7 @@ class HealthCheckController
         return new Response('', $success ? Response::HTTP_OK : Response::HTTP_SERVICE_UNAVAILABLE);
     }
 
-    public function healthOverview(HealthChecker $healthChecker): JsonResponse
+    public function healthOverview(GlobalHealthChecker $healthChecker): JsonResponse
     {
         $response = [
             'totalChecks' => 0,

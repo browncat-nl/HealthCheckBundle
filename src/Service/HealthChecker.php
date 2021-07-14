@@ -6,7 +6,7 @@ namespace Browncat\HealthCheckBundle\Service;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
 
-abstract class HealthChecker
+abstract class HealthChecker implements HealthCheckerInterface
 {
     /** @var HealthCheck[] */
     private array $checks = [];

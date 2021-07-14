@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use function in_array;
 use function property_exists;
 
-class HealthCheckBundleCompilerPass implements CompilerPassInterface
+class HealthCheckCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
