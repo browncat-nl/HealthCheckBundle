@@ -1,5 +1,5 @@
 {
-    "name": "browncat-nl/healthcheck-bundle",
+    "name": "browncat/healthcheck-bundle",
     "description": "Tool for health checks",
     "type": "symfony-bundle",
     "minimum-stability": "dev",
