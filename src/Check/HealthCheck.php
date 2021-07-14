@@ -6,13 +6,17 @@ namespace Browncat\HealthCheckBundle\Check;
 
 abstract class HealthCheck implements HealthCheckInterface
 {
-    protected static string $name = '';
+    /** @var string */
+    protected static $name = '';
 
-    protected ?string $reasonPhrase = null;
+    /** @var string|null */
+    protected $reasonPhrase = null;
 
-    protected ?bool $succeeded = false;
+    /** @var bool */
+    protected $succeeded = false;
 
-    protected bool $skipped = false;
+    /** @var bool */
+    protected $skipped = false;
 
     public function getName(): string
     {

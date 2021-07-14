@@ -13,7 +13,8 @@ use function sprintf;
 
 final class DoctrineConnectionHealthCheck extends HealthCheck
 {
-    protected static string $name = 'doctrine:connection';
+    /** @var string */
+    protected static $name = 'doctrine:connection';
 
     public function __construct(?ManagerRegistry $doctrine)
     {
