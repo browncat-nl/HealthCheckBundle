@@ -18,7 +18,7 @@ To enable them all add the following to your `routes.yaml`:
 
 ```yaml
 health:
-  resource: "@HealthCheckerBundle/Resources/config/routes.yaml"
+  resource: "@HealthCheckBundle/Resources/config/routes.yaml"
 ```
 
 ## Custom health checks
@@ -45,9 +45,6 @@ final class ExampleCheck extends HealthCheck
     // List of checkers who should execute this check.
     public static $checkers = [ReadinessChecker::class, LivenessChecker::class];
 
-    /**
-     * @param ContainerInterface $container
-     */
     public function __construct(ContainerInterface $container)
     {
         if ($container->has('example')) {
