@@ -13,7 +13,6 @@
     ],
     "require": {
         "php": "^7.1 || ^8.0",
-        "psr/log": "^3",
         "symfony/config": "^4.4.3|^5.0|^6.0",
         "symfony/dependency-injection": "^4.4.3|^5.0|^6.0",
         "symfony/framework-bundle": "^4.4.3|^5.0|^6.0"
