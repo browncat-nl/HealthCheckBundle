@@ -33,11 +33,13 @@ class AddHealthCheckCompilerPass implements CompilerPassInterface
         foreach ($healthCheckServices as $id => $tags) {
             $tags; // Prevent unused variable
 
+            $healthCheckDefinition = $container->findDefinition($id);
+
             foreach ($healthCheckerDefinitions as $definition) {
                 // Check if `public static $checkers` is set on class.
                 // Class GlobalHealthChecker should have all checks so it's exlucded from this list.
-                if (property_exists($id, 'checkers') && $definition->getClass() !== GlobalHealthChecker::class) {
-                    $class = new ReflectionClass($id);
+                if (property_exists($healthCheckDefinition->getClass(), 'checkers') && $definition->getClass() !== GlobalHealthChecker::class) {
+                    $class = new ReflectionClass($healthCheckDefinition->getClass());
                     // Add checker if it exists in the $checkers array.
                     if (in_array($definition->getClass(), $class->getStaticPropertyValue('checkers'))) {
                         $definition->addMethodCall('addCheck', [new Reference($id)]);
