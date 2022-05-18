@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Browncat\HealthCheckBundle\Check;
 
+use function end;
+use function explode;
+
 abstract class HealthCheck implements HealthCheckInterface
 {
     /** @var string */
@@ -21,12 +24,13 @@ abstract class HealthCheck implements HealthCheckInterface
     public function getName(): string
     {
         // Return class name when no custom name is set.
-        if ('' == $this->name) {
-            $classNamePieces = explode('\\', get_class($this));
+        if ($this->name === '') {
+            $classNamePieces = explode('\\', static::class);
+
             return end($classNamePieces);
         }
 
-        return $this->name == '' ? end(explode('/', get_class($this))) : $this->name;
+        return $this->name;
     }
 
     public function isSkipped(): bool
