@@ -9,9 +9,13 @@ use Browncat\HealthCheckBundle\Check\HealthCheck;
 abstract class HealthChecker implements HealthCheckerInterface
 {
     /** @var HealthCheck[] */
-    private array $checks = [];
+    private $checks = [];
 
-    public function addCheck(HealthCheck $check): self
+    /**
+     * @return self
+     */
+    // phpcs:ignore
+    public function addCheck(HealthCheck $check)
     {
         $this->checks[] = $check;
 

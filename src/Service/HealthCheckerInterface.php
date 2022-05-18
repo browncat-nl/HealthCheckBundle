@@ -8,7 +8,11 @@ use Browncat\HealthCheckBundle\Check\HealthCheck;
 
 interface HealthCheckerInterface
 {
-    public function addCheck(HealthCheck $check): self;
+    /**
+     * @return self
+     */
+    // phpcs:ignore
+    public function addCheck(HealthCheck $check);
 
     /**
      * @return HealthCheck[]

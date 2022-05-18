@@ -13,12 +13,15 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+use function get_class;
+
 /**
  * @todo Make this dynamic based on a list of checkers.
  */
 class HealthCheckController
 {
-    private LoggerInterface $logger;
+    /** @var LoggerInterface $logger */
+    private $logger;
 
     public function __construct(LoggerInterface $logger)
     {
@@ -119,7 +122,7 @@ class HealthCheckController
     {
         return [
             'name' => $check->getName(),
-            'class' => $check::class,
+            'class' => get_class($check),
             'reason' => $check->getReasonPhrase(),
         ];
     }
