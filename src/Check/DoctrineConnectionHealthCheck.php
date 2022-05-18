@@ -14,7 +14,7 @@ use function sprintf;
 final class DoctrineConnectionHealthCheck extends HealthCheck
 {
     /** @var string */
-    protected static $name = 'doctrine:connection';
+    protected $name = 'doctrine:connection';
 
     public function __construct(?ManagerRegistry $doctrine)
     {

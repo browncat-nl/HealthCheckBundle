@@ -7,7 +7,7 @@ namespace Browncat\HealthCheckBundle\Check;
 abstract class HealthCheck implements HealthCheckInterface
 {
     /** @var string */
-    protected static $name = '';
+    protected $name = '';
 
     /** @var string|null */
     protected $reasonPhrase = null;
@@ -20,7 +20,13 @@ abstract class HealthCheck implements HealthCheckInterface
 
     public function getName(): string
     {
-        return $this::$name;
+        // Return class name when no custom name is set.
+        if ('' == $this->name) {
+            $classNamePieces = explode('\\', get_class($this));
+            return end($classNamePieces);
+        }
+
+        return $this->name == '' ? end(explode('/', get_class($this))) : $this->name;
     }
 
     public function isSkipped(): bool

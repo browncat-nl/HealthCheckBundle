@@ -40,7 +40,7 @@ use Psr\Container\ContainerInterface;
 final class ExampleCheck extends HealthCheck
 {
     // Name of the health check
-    protected static $name = 'example:connection';
+    protected $name = 'example:connection';
 
     // List of checkers who should execute this check.
     public static $checkers = [ReadinessChecker::class, LivenessChecker::class];
@@ -68,7 +68,7 @@ final class ExampleCheck extends HealthCheck
 Health checks must be registered as services and tagged with the `health_check.check` tag. If you’re using the [default services.yaml configuration](https://symfony.com/doc/current/service_container.html#service-container-services-load-example), this is already done for you, thanks to [autoconfiguration](https://symfony.com/doc/current/service_container.html#services-autoconfigure).
 
 ### Naming a check
-A check should have a common name. This makes sure it can be located if a big list of checks is executed. A check can be named by populating the `proteced string $name`.
+A check should have a common name. This makes sure it can be located if a big list of checks is executed. A check can be named by populating the `proteced $name`.
 
 ```php
 // src/Check/ExampleCheck.php
@@ -76,7 +76,7 @@ use Browncat\HealthCheckBundle\Check\HealthCheck;
 
 final class ExampleCheck extends HealthCheck
 {
-    protected static string $name = 'example:connection';
+    protected $name = 'example:connection';
 
     ...
 }
