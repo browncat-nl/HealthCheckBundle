@@ -11,9 +11,10 @@ abstract class HealthChecker implements HealthCheckerInterface
     /** @var HealthCheck[] */
     private array $checks = [];
 
-    public function addCheck(HealthCheck $check): void
+    public function addCheck(HealthCheck $check): self
     {
         $this->checks[] = $check;
+        return $this;
     }
 
     /**

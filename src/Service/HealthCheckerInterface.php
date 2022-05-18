@@ -8,7 +8,7 @@ use Browncat\HealthCheckBundle\Check\HealthCheck;
 
 interface HealthCheckerInterface
 {
-    public function addCheck(HealthCheck $check): void;
+    public function addCheck(HealthCheck $check): self;
 
     /**
      * @return HealthCheck[]
