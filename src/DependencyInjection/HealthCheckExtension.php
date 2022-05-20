@@ -7,7 +7,7 @@ namespace Browncat\HealthCheckBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class HealthCheckExtension extends Extension
 {
@@ -18,10 +18,11 @@ class HealthCheckExtension extends Extension
     {
         $configs; // Prevent unused variable
 
-        $yamlLoader = new YamlFileLoader(
+        $xmlLoader = new XmlFileLoader(
             $container,
             new FileLocator(__DIR__ . '/../Resources/config')
         );
-        $yamlLoader->load('services.yaml');
+
+        $xmlLoader->load('services.xml');
     }
 }

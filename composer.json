@@ -16,7 +16,6 @@
         "psr/log": "^1|^2|^3",
         "symfony/config": "^4.4.3|^5.0|^6.0",
         "symfony/dependency-injection": "^4.4.3|^5.0|^6.0",
-        "symfony/yaml": "^4.4.3|^5.0|^6.0",
         "symfony/framework-bundle": "^4.4.3|^5.0|^6.0"
     },
     "config": {

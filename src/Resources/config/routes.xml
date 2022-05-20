@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing
+        https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="liveness" path="/health/liveness"
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkLiveness">
+    <route id="readiness" path="/health/readiness"
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkReadiness">
+    <route id="startup" path="/health/startup"
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkStartup">
+    <route id="healthz" path="/healthz"
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::healthOverview">
+</routes>

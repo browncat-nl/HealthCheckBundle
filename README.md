@@ -18,12 +18,10 @@ To enable them all add the following to your `routes.yaml`:
 
 ```yaml
 health:
-  resource: "@HealthCheckBundle/Resources/config/routes.yaml"
+  resource: "@HealthCheckBundle/Resources/config/routes.xml"
 ```
 
-## Custom health checks
-
-### Creating a health check
+## Creating a health check
 Health checks are defined in classes extending `Browncat\HealthCheckBundle\Check\HealthCheck`. For example, you may want to check the connection between the application and a remote system:
 
 ```php

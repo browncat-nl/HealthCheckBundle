@@ -1,0 +1,39 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Register checks -->
+        <service  id="Browncat\HealthCheckBundle\Check\DoctrineConnectionHealthCheck"  public="false">
+            <argument type="service" id="doctrine" on-invalid="ignore"/>
+            <tag name="health_check.check"/>
+        </service>
+
+        <!-- Register checkers -->
+        <service id="Browncat\HealthCheckBundle\Service\GlobalHealthChecker" public="false">
+            <tag name="health_check.checker"/>
+        </service>
+        <service id="health_check.checker.global" alias="Browncat\HealthCheckBundle\Service\GlobalHealthChecker" public="true"></service>
+
+        <service id="Browncat\HealthCheckBundle\Service\LivenessChecker" public="false">
+            <tag name="health_check.checker"/>
+        </service>
+        <service id="health_check.checker.liveness" alias="Browncat\HealthCheckBundle\Service\LivenessChecker" public="true"></service>
+
+        <service id="Browncat\HealthCheckBundle\Service\ReadinessChecker" public="false">
+            <tag name="health_check.checker"/>
+        </service>
+        <service id="health_check.checker.readiness" alias="Browncat\HealthCheckBundle\Service\ReadinessChecker" public="true"></service>
+
+        <service id="Browncat\HealthCheckBundle\Service\StartupChecker" public="false">
+            <tag name="health_check.checker"/>
+        </service>
+        <service id="health_check.checker.startup" alias="Browncat\HealthCheckBundle\Service\StartupChecker" public="true"></service>
+
+        <!-- Configure controller -->
+        <service id="Browncat\HealthCheckBundle\Controller\HealthCheckController">
+            <argument type="service" id="logger"/>
+            <tag name="controller.service_arguments"/>
+        </service>
+    </services>
+</container>
