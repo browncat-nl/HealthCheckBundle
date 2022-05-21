@@ -5,11 +5,11 @@
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="liveness" path="/health/liveness"
-        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkLiveness">
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkLiveness" />
     <route id="readiness" path="/health/readiness"
-        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkReadiness">
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkReadiness" />
     <route id="startup" path="/health/startup"
-        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkStartup">
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::checkStartup" />
     <route id="healthz" path="/healthz"
-        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::healthOverview">
+        controller="Browncat\HealthCheckBundle\Controller\HealthCheckController::healthOverview" />
 </routes>
