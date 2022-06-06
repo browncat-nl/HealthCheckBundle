@@ -28,7 +28,10 @@
     "autoload": {
         "psr-4": {
             "Browncat\\HealthCheckBundle\\": ""
-        }
+        },
+        "exclude-from-classmap": [
+            "/tests/"
+        ]        
     },
     "require-dev": {
         "dg/bypass-finals": "^1.3",
