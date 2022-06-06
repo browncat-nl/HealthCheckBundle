@@ -24,6 +24,7 @@ final class DoctrineConnectionHealthCheck extends HealthCheck
             foreach ($doctrine->getConnections() as $connection) {
                 assert($connection instanceof Connection);
                 try {
+                    /** @todo This method will be made protected in DBAL 4.0 */
                     $connection->connect();
 
                     if (! $connection->isConnected()) {
