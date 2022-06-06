@@ -16,7 +16,7 @@ use function count;
 class HealthCheckExtension extends ConfigurableExtension
 {
     /**
-     * @param mixed[] $mergedConfigs
+     * @param mixed[] $config
      */
     protected function loadInternal(array $config, ContainerBuilder $container): void
     {

@@ -13,7 +13,6 @@ use Symfony\Component\DependencyInjection\Reference;
 
 use function count;
 use function in_array;
-use function is_null;
 use function property_exists;
 
 class AddHealthCheckCompilerPass implements CompilerPassInterface
@@ -37,7 +36,7 @@ class AddHealthCheckCompilerPass implements CompilerPassInterface
 
             $healthCheckDefinition = $container->findDefinition($id);
 
-            if (is_null($healthCheckDefinition->getClass())) {
+            if ($healthCheckDefinition->getClass() === null) {
                 continue;
             }
 
