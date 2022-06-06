@@ -2,6 +2,7 @@
     "name": "browncat/healthcheck-bundle",
     "description": "Tool for health checks",
     "type": "symfony-bundle",
+    "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "authors": [
