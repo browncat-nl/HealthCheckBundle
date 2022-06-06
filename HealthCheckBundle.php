@@ -6,7 +6,7 @@ namespace Browncat\HealthCheckBundle;
 
 use Browncat\HealthCheckBundle\Check\HealthCheckInterface;
 use Browncat\HealthCheckBundle\DependencyInjection\AddHealthCheckCompilerPass;
-use Browncat\HealthCheckBundle\Service\HealthCheckerInterface;
+use Browncat\HealthCheckBundle\Checker\HealthCheckerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

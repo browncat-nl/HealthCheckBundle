@@ -24,8 +24,8 @@ class Configuration implements ConfigurationInterface
                             ->arrayNode('checkers')
                                 ->info('(Optional) by default all checkers run package provided health checks. Fill in the FQCN of checkers you want this check to be run by.')
                                 ->example([
-                                    'Browncat\HealthCheckBundle\Service\LivenessChecker',
-                                    'Browncat\HealthCheckBundle\Service\ReadinessChecker',
+                                    'Browncat\HealthCheckBundle\Checker\LivenessChecker',
+                                    'Browncat\HealthCheckBundle\Checker\ReadinessChecker',
                                 ])
                                 ->scalarPrototype()->end()
                             ->end()

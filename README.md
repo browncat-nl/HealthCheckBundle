@@ -51,8 +51,8 @@ health_check:
     checks:
         doctrine.connection:
             checkers:
-                - Browncat\HealthCheckBundle\Service\LivenessChecker
-                - Browncat\HealthCheckBundle\Service\ReadinessChecker
+                - Browncat\HealthCheckBundle\Checker\LivenessChecker
+                - Browncat\HealthCheckBundle\Checker\ReadinessChecker
 ```
 
 A list of availble checkers can be found [here](#list-of-available-checkers)
@@ -73,8 +73,8 @@ Health checks are defined in classes extending `Browncat\HealthCheckBundle\Check
 namespace App\Check;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
-use Browncat\HealthCheckBundle\Service\LivenessChecker;
-use Browncat\HealthCheckBundle\Service\ReadinessChecker;
+use Browncat\HealthCheckBundle\Checker\LivenessChecker;
+use Browncat\HealthCheckBundle\Checker\ReadinessChecker;
 use Psr\Container\ContainerInterface;
 
 final class ExampleCheck extends HealthCheck
@@ -175,7 +175,7 @@ By default *all* checkers (readiness, liveness and maybe some other configured o
 ```php
 // src/Check/ExampleCheck.php
 use Browncat\HealthCheckBundle\Check\HealthCheck;
-use Browncat\HealthCheckBundle\Service\ReadinessChecker;
+use Browncat\HealthCheckBundle\Checker\ReadinessChecker;
 
 final class ExampleCheck extends HealthCheck
 {
@@ -186,7 +186,7 @@ final class ExampleCheck extends HealthCheck
 ```
 
 #### List of available checkers
-- `Browncat\HealthCheckBundle\Service\LivenessChecker`
-- `Browncat\HealthCheckBundle\Service\ReadinessChecker`
-- `Browncat\HealthCheckBundle\Service\StartupChecker`
-- `Browncat\HealthCheckBundle\Service\GlobalHealthChecker` (this one processes all registered checks no matter what)
+- `Browncat\HealthCheckBundle\Checker\LivenessChecker`
+- `Browncat\HealthCheckBundle\Checker\ReadinessChecker`
+- `Browncat\HealthCheckBundle\Checker\StartupChecker`
+- `Browncat\HealthCheckBundle\Checker\GlobalHealthChecker` (this one processes all registered checks no matter what)

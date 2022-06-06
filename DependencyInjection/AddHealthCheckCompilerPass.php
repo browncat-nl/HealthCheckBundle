@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Browncat\HealthCheckBundle\DependencyInjection;
 
-use Browncat\HealthCheckBundle\Service\GlobalHealthChecker;
+use Browncat\HealthCheckBundle\Checker\GlobalHealthChecker;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

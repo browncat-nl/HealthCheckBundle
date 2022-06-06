@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Browncat\HealthCheckBundle\Service;
+namespace Browncat\HealthCheckBundle\Checker;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
 

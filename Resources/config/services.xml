@@ -11,25 +11,25 @@
         <service id="health_check.check.doctrine.connection" alias="Browncat\HealthCheckBundle\Check\DoctrineConnectionHealthCheck" public="true"/>
 
         <!-- Register checkers -->
-        <service id="Browncat\HealthCheckBundle\Service\GlobalHealthChecker" public="false">
+        <service id="Browncat\HealthCheckBundle\Checker\GlobalHealthChecker" public="false">
             <tag name="health_check.checker"/>
         </service>
-        <service id="health_check.checker.global" alias="Browncat\HealthCheckBundle\Service\GlobalHealthChecker" public="true"></service>
+        <service id="health_check.checker.global" alias="Browncat\HealthCheckBundle\Checker\GlobalHealthChecker" public="true"></service>
 
-        <service id="Browncat\HealthCheckBundle\Service\LivenessChecker" public="false">
+        <service id="Browncat\HealthCheckBundle\Checker\LivenessChecker" public="false">
             <tag name="health_check.checker"/>
         </service>
-        <service id="health_check.checker.liveness" alias="Browncat\HealthCheckBundle\Service\LivenessChecker" public="true"></service>
+        <service id="health_check.checker.liveness" alias="Browncat\HealthCheckBundle\Checker\LivenessChecker" public="true"></service>
 
-        <service id="Browncat\HealthCheckBundle\Service\ReadinessChecker" public="false">
+        <service id="Browncat\HealthCheckBundle\Checker\ReadinessChecker" public="false">
             <tag name="health_check.checker"/>
         </service>
-        <service id="health_check.checker.readiness" alias="Browncat\HealthCheckBundle\Service\ReadinessChecker" public="true"></service>
+        <service id="health_check.checker.readiness" alias="Browncat\HealthCheckBundle\Checker\ReadinessChecker" public="true"></service>
 
-        <service id="Browncat\HealthCheckBundle\Service\StartupChecker" public="false">
+        <service id="Browncat\HealthCheckBundle\Checker\StartupChecker" public="false">
             <tag name="health_check.checker"/>
         </service>
-        <service id="health_check.checker.startup" alias="Browncat\HealthCheckBundle\Service\StartupChecker" public="true"></service>
+        <service id="health_check.checker.startup" alias="Browncat\HealthCheckBundle\Checker\StartupChecker" public="true"></service>
 
         <!-- Configure controller -->
         <service id="Browncat\HealthCheckBundle\Controller\HealthCheckController">

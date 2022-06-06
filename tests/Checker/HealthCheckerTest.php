@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Browncat\HealthCheckBundle\Tests\Service;
+namespace Browncat\HealthCheckBundle\Tests\Checker;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
-use Browncat\HealthCheckBundle\Service\GlobalHealthChecker;
+use Browncat\HealthCheckBundle\Checker\GlobalHealthChecker;
 use PHPUnit\Framework\TestCase;
 
 class HealthCheckerTest extends TestCase

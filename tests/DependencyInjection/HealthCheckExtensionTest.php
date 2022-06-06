@@ -7,10 +7,10 @@ namespace Browncat\HealthCheckBundle\Tests\DependencyInjection;
 use Browncat\HealthCheckBundle\Check\DoctrineConnectionHealthCheck;
 use Browncat\HealthCheckBundle\Controller\HealthCheckController;
 use Browncat\HealthCheckBundle\HealthCheckBundle;
-use Browncat\HealthCheckBundle\Service\GlobalHealthChecker;
-use Browncat\HealthCheckBundle\Service\LivenessChecker;
-use Browncat\HealthCheckBundle\Service\ReadinessChecker;
-use Browncat\HealthCheckBundle\Service\StartupChecker;
+use Browncat\HealthCheckBundle\Checker\GlobalHealthChecker;
+use Browncat\HealthCheckBundle\Checker\LivenessChecker;
+use Browncat\HealthCheckBundle\Checker\ReadinessChecker;
+use Browncat\HealthCheckBundle\Checker\StartupChecker;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\AbstractLogger;
 use RuntimeException;
@@ -185,8 +185,8 @@ class HealthCheckExtensionTest extends TestCase
                 'checks' => [
                     'doctrine.connection' => [
                         'checkers' => [
-                            'Browncat\HealthCheckBundle\Service\LivenessChecker',
-                            'Browncat\HealthCheckBundle\Service\ReadinessChecker',
+                            'Browncat\HealthCheckBundle\Checker\LivenessChecker',
+                            'Browncat\HealthCheckBundle\Checker\ReadinessChecker',
                         ],
                     ],
                 ],

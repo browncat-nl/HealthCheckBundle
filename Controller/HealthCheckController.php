@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Browncat\HealthCheckBundle\Controller;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
-use Browncat\HealthCheckBundle\Service\GlobalHealthChecker;
-use Browncat\HealthCheckBundle\Service\LivenessChecker;
-use Browncat\HealthCheckBundle\Service\ReadinessChecker;
-use Browncat\HealthCheckBundle\Service\StartupChecker;
+use Browncat\HealthCheckBundle\Checker\GlobalHealthChecker;
+use Browncat\HealthCheckBundle\Checker\LivenessChecker;
+use Browncat\HealthCheckBundle\Checker\ReadinessChecker;
+use Browncat\HealthCheckBundle\Checker\StartupChecker;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
