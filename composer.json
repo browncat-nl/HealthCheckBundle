@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Browncat\\HealthCheckBundle\\": "src/"
+            "Browncat\\HealthCheckBundle\\": ""
         }
     },
     "require-dev": {
