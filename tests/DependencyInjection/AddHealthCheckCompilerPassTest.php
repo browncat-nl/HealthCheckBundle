@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Browncat\HealthCheckBundle\Tests\DependencyInjection;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
-use Browncat\HealthCheckBundle\DependencyInjection\AddHealthCheckCompilerPass;
-use Browncat\HealthCheckBundle\HealthCheckBundle;
 use Browncat\HealthCheckBundle\Checker\GlobalHealthChecker;
 use Browncat\HealthCheckBundle\Checker\HealthChecker;
+use Browncat\HealthCheckBundle\DependencyInjection\AddHealthCheckCompilerPass;
+use Browncat\HealthCheckBundle\HealthCheckBundle;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

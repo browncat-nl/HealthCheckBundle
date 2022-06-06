@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Browncat\HealthCheckBundle\Tests\DependencyInjection;
 
 use Browncat\HealthCheckBundle\Check\DoctrineConnectionHealthCheck;
-use Browncat\HealthCheckBundle\Controller\HealthCheckController;
-use Browncat\HealthCheckBundle\HealthCheckBundle;
 use Browncat\HealthCheckBundle\Checker\GlobalHealthChecker;
 use Browncat\HealthCheckBundle\Checker\LivenessChecker;
 use Browncat\HealthCheckBundle\Checker\ReadinessChecker;
 use Browncat\HealthCheckBundle\Checker\StartupChecker;
+use Browncat\HealthCheckBundle\Controller\HealthCheckController;
+use Browncat\HealthCheckBundle\HealthCheckBundle;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\AbstractLogger;
 use RuntimeException;

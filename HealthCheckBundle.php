@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Browncat\HealthCheckBundle;
 
 use Browncat\HealthCheckBundle\Check\HealthCheckInterface;
-use Browncat\HealthCheckBundle\DependencyInjection\AddHealthCheckCompilerPass;
 use Browncat\HealthCheckBundle\Checker\HealthCheckerInterface;
+use Browncat\HealthCheckBundle\DependencyInjection\AddHealthCheckCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
