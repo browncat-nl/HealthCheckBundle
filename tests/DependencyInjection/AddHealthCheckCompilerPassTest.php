@@ -6,9 +6,11 @@ namespace Browncat\HealthCheckBundle\Tests\DependencyInjection;
 
 use Browncat\HealthCheckBundle\Check\HealthCheck;
 use Browncat\HealthCheckBundle\DependencyInjection\AddHealthCheckCompilerPass;
+use Browncat\HealthCheckBundle\HealthCheckBundle;
 use Browncat\HealthCheckBundle\Service\GlobalHealthChecker;
 use Browncat\HealthCheckBundle\Service\HealthChecker;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -196,6 +198,85 @@ class AddHealthCheckCompilerPassTest extends TestCase
         $this->assertEquals('one-healthcheck', $methodCalls[1][1][0]);
         $this->assertEquals('two-healthcheck', $methodCalls[2][1][0]);
     }
+
+    public function testVendorHealthCheck(): void
+    {
+        $container = $this->loadContainerWithConfig([
+            'health_check' => [
+                'checks' => [
+                    'browncat.vendor' => [],
+                ],
+            ],
+        ], static function ($container): void {
+            $container->register('health_check.check.browncat.vendor', BrowncatVendorTestCheck::class)
+                ->setPublic(true)
+                ->addTag('health_check.check');
+
+            $container->register('one-healthchecker', HealthCheckerOne::class)
+                ->setPublic(false)
+                ->addTag('health_check.checker');
+
+            $container->register('two-healthchecker', HealthCheckerTwo::class)
+                ->setPublic(false)
+                ->addTag('health_check.checker');
+        });
+
+        (new AddHealthCheckCompilerPass())->process($container);
+
+        $methodCallsHealthCheckerOne = $container->getDefinition('one-healthchecker')->getMethodCalls();
+        $methodCallsHealthCheckerTwo = $container->getDefinition('two-healthchecker')->getMethodCalls();
+
+        $this->assertEquals('health_check.check.browncat.vendor', $methodCallsHealthCheckerOne[0][1][0]);
+        $this->assertEquals('health_check.check.browncat.vendor', $methodCallsHealthCheckerTwo[0][1][0]);
+    }
+
+    public function testVendorHealthCheckSubsetOfCheckers(): void
+    {
+        $container = $this->loadContainerWithConfig([
+            'health_check' => [
+                'checks' => [
+                    'browncat.vendor' => [
+                        'checkers' => ['Browncat\HealthCheckBundle\Tests\DependencyInjection\HealthCheckerOne'],
+                    ],
+                ],
+            ],
+        ], static function ($container): void {
+            $container->register('health_check.check.browncat.vendor', BrowncatVendorTestCheck::class)
+                ->setPublic(true)
+                ->addTag('health_check.check');
+
+            $container->register('one-healthchecker', HealthCheckerOne::class)
+                ->setPublic(false)
+                ->addTag('health_check.checker');
+
+            $container->register('two-healthchecker', HealthCheckerTwo::class)
+                ->setPublic(false)
+                ->addTag('health_check.checker');
+        });
+
+        (new AddHealthCheckCompilerPass())->process($container);
+
+        $methodCallsHealthCheckerOne = $container->getDefinition('one-healthchecker')->getMethodCalls();
+        $methodCallsHealthCheckerTwo = $container->getDefinition('two-healthchecker')->getMethodCalls();
+
+        $this->assertEquals('health_check.check.browncat.vendor', $methodCallsHealthCheckerOne[0][1][0]);
+        $this->assertEquals([], $methodCallsHealthCheckerTwo);
+    }
+
+    private function loadContainerWithConfig(array $configs, ?callable $callback = null): ContainerBuilder
+    {
+        $bundle    = new HealthCheckBundle();
+        $extension = $bundle->getContainerExtension();
+        $container = new ContainerBuilder();
+        $container->set('logger', $this->createMock(NullLogger::class));
+
+        $callback($container);
+
+        $container->registerExtension($extension);
+        $extension->load($configs, $container);
+
+        return $container;
+    }
 }
 
 class HealthCheckForAllCheckers extends HealthCheck
@@ -217,6 +298,10 @@ class HealthCheckForCheckerOneAndTwo extends HealthCheck
 class HealthCheckForCheckerNone extends HealthCheck
 {
     public static $checkers = [];
+}
+
+class BrowncatVendorTestCheck extends HealthCheck
+{
 }
 
 class HealthCheckerOne extends HealthChecker

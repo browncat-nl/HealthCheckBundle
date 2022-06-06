@@ -13,6 +13,7 @@ use Browncat\HealthCheckBundle\Service\ReadinessChecker;
 use Browncat\HealthCheckBundle\Service\StartupChecker;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\AbstractLogger;
+use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Reference;
@@ -141,6 +142,60 @@ class HealthCheckExtensionTest extends TestCase
 
         $this->assertEquals('logger', $loggerReference->__toString());
         $this->assertEquals(ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $loggerReference->getInvalidBehavior());
+    }
+
+    public function testVendorHealthCheckNonExisting(): void
+    {
+        try {
+            $this->buildContainerWithConfig([
+                'health_check' => [
+                    'checks' => [
+                        'nonexisting.check' => [],
+                    ],
+                ],
+            ]);
+        } catch (RuntimeException $e) {
+            $this->assertEquals('[HealthCheckBundle] nonexisting.check check does not exist! make sure it is typed correctly and included in the version you are using!', $e->getMessage());
+
+            return;
+        }
+
+        $this->fail('Config with non existing check must throw RunetimeException');
+    }
+
+    public function testVendorHealthCheck(): void
+    {
+        $container = $this->buildContainerWithConfig([
+            'health_check' => [
+                'checks' => [
+                    'doctrine.connection' => [],
+                ],
+            ],
+        ]);
+
+        $definition = $container->findDefinition('health_check.check.doctrine.connection');
+        $this->assertTrue($definition->hasTag('enabled'));
+        $this->assertCount(0, $definition->getTag('checkers')[0]);
+    }
+
+    public function testVendorHealthCheckWhomIsEnabledForSubsetOfCheckers(): void
+    {
+        $container = $this->buildContainerWithConfig([
+            'health_check' => [
+                'checks' => [
+                    'doctrine.connection' => [
+                        'checkers' => [
+                            'Browncat\HealthCheckBundle\Service\LivenessChecker',
+                            'Browncat\HealthCheckBundle\Service\ReadinessChecker',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $definition = $container->findDefinition('health_check.check.doctrine.connection');
+        $this->assertTrue($definition->hasTag('enabled'));
+        $this->assertCount(2, $definition->getTag('checkers')[0]);
     }
 
     private function buildContainerWithConfig(array $configs)

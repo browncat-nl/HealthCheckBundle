@@ -8,6 +8,7 @@
             <argument type="service" id="doctrine" on-invalid="ignore"/>
             <tag name="health_check.check"/>
         </service>
+        <service id="health_check.check.doctrine.connection" alias="Browncat\HealthCheckBundle\Check\DoctrineConnectionHealthCheck" public="true"/>
 
         <!-- Register checkers -->
         <service id="Browncat\HealthCheckBundle\Service\GlobalHealthChecker" public="false">
